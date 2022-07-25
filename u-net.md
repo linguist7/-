@@ -1,4 +1,5 @@
-                                                                                                                            안창덕
+안창덕
+
 # U-Net
 * 'U-Net : Convolutional Networks for Biomedical Image Segmentation'은 Image Segmentation를 목적으로 하는 모델의 시초이다.
 
