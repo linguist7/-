@@ -45,16 +45,6 @@
 
 * d1은 바로 가장 가까운 클래스의 테두리와의 거리, d2는 두 번째로 가까운 클래스의 테두리와의 거리를 말한다. 정리하면, energy function은 weight map에 log(픽셀에서 얻은 클래스별 예측값을 soft-max한 것)를 곱한 것이라고 할 수 있겠다.
 
-<hr/>참고자료
-
-### Weight Map
-
-> ![](https://choijhyeok.github.io/paper/images/2022-06-21-U-net/Untitled%204.png)
-
-* a가 원본이미지, b가 원하는 분할 목표, c가 분할된 이미지, d가 wegiht map 시각화 이미지
-
-<hr/>
-
 ## Data Augmentation
 * Data Augmentation는 학습용 데이터셋이 별로 없을 때 사용하기 유용한 기술이다. 
 * U-Net은 Data Augmentation를 위해 shift, rotation, random-elastic deformation이라는 기법을 사용해 Data Augmentation을 구현했다.
@@ -71,10 +61,22 @@
 * 평가 지표는 warping error, Rand error, pixel error로 U-Net을 포함한 10개의 모델을 가지고 성능을 평가했고, 평과 결과는 다음과 같다.
 
 > ![](https://velog.velcdn.com/images%2Fminkyu4506%2Fpost%2Ffde09a46-df2a-44ca-9316-a50b753f41dc%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202021-09-01%20%EC%98%A4%ED%9B%84%208.32.14.png)
+* U-Net이 좋은 성능을 보인다.
 
 
+* U-Net은 광학 현미경(light microscopic)에서 얻은 이미지로도 cell segmentation task를 수행했다.
 
+> ![](https://velog.velcdn.com/images%2Fminkyu4506%2Fpost%2F9677e8d7-73a1-479c-a416-cc3eba56290e%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202021-09-01%20%EC%98%A4%ED%9B%84%208.38.34.png)
+* a, c가 입력 이미지고 b, d가 ground truth segmentation map이다. a, c와 같이 광학 현미경에서 얻은 이미지로 b, d와 같이 세포를 구별하는 task를 U-Net이 얼마나 잘 수행하는지 시험해 본 것이다.
+* 여기서는 성능을 IoU로 측정했고, 그 결과는 다음과 같다.
 
+> ![](https://velog.velcdn.com/images%2Fminkyu4506%2Fpost%2F2c3cf62c-924a-4c1b-a31b-772d07262d76%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202021-09-01%20%EC%98%A4%ED%9B%84%208.41.23.png)
+* U-Net이 좋은 성능을 보인다.
+
+## Conclusion
+* U-Net은 다양한 biomedical segmentation applications에서 좋은 성능을 보여준다.
+* 저자는 elastic deformation이 포함된 Data augmentation 덕분에 적은 사이즈의 데이터셋만 요구했고 합리적인 학습 시간(NVidia Titan GPU (6 GB)에서 10시간 학습)을 가졌다고 말하고 있다.
+* U-Net의 구조가 다양한 task에 쉽게 응용될 수 있을거라 확신한다고 말하고 있다.
 
 
 
