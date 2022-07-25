@@ -63,6 +63,7 @@
 > ![](https://velog.velcdn.com/images%2Fminkyu4506%2Fpost%2Ffde09a46-df2a-44ca-9316-a50b753f41dc%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202021-09-01%20%EC%98%A4%ED%9B%84%208.32.14.png)
 * U-Net이 좋은 성능을 보인다.
 
+<hr/>
 
 * U-Net은 광학 현미경(light microscopic)에서 얻은 이미지로도 cell segmentation task를 수행했다.
 
