@@ -10,12 +10,13 @@
 
 ## introduction
 * 이 장에서는 U-Net이 나오게 된 배경을 설명해준다. 
-  * 2012년 AlexNet의 등장 이후 컨볼루션 연산을 수행하는 신경망을 여려개 쌓아 이미지를 처리하는 방식을 통해 이미지 속 하나의 이미지가 어떤 객체인지 분류(Classification)하는 과제 큰 성과를 냈다. 그러나 Biomedical image의 경우에는 한 이미지 안에 여러개의 세포가 들어있기 때문에 픽셀별로 클래스 분류를 해야하는, Localization이 포함된 Classification이 필요했고, 이 문제에 대한 해결책으로 픽셀과 픽셀 주변의 영역을 받아 픽셀에 담긴 정보가 어떤 객체를 나타내는건지 판단하는 방식이 제시되었으나, 이렇게 객체를 예측하면 patch별로 연산을 하기 때문에 연산 속도가 매우 느리며 서로 중복된 영역을 가지는 patch가 많아 중복된 예측 결과도 많이 나온다는 단점이 존재했다. 이러한 이유로 인해 나오게 된 U-Net의 특징을 다음과 같이 정리할 수 있다.
+  * 2012년 AlexNet의 등장 이후 컨볼루션 연산을 수행하는 신경망을 여려개 쌓아 이미지를 처리하는 방식을 통해 이미지 속 하나의 이미지가 어떤 객체인지 분류(Classification)하는 과제 큰 성과를 냈다. 그러나 Biomedical image의 경우에는 한 이미지 안에 여러개의 세포가 들어있기 때문에 픽셀별로 클래스 분류를 해야하는, Localization이 포함된 Classification이 필요했고, 이 문제에 대한 해결책으로 픽셀과 픽셀 주변의 영역을 받아 픽셀에 담긴 정보가 어떤 객체를 나타내는건지 판단하는 방식이 제시되었으나, 이렇게 객체를 예측하면 patch별로 연산을 하기 때문에 연산 속도가 매우 느리며 서로 중복된 영역을 가지는 patch가 많아 중복된 예측 결과도 많이 나온다는 단점이 존재했다. 
 
-1. U-Net은 upsampling과정에서 channel의 숫자가 더 많기 때문에 higher resolution layer에 context information을 전파할 수 있다.
-2. Fully connected layer(FCN layer)를 사용하지 않았기 때문에 patch에서 얻은 정보만 가지고 해당 patch에서 classification을 수행할 수 있고 이 과정을 이미지 전체에 대해 시행하기 때문에 seamless한 segmentation이 가능하다.(GPU 메모리의 한계성 때문에 이 방식 말고는 거대한 이미지를 처리할 수 없다.)
-3. U-Net은 Data augmentation에 elastic deformation을 적용해 학습용 데이터셋을 많이 늘렸다.
-4. U-Net은 붙어있는 세포 사이를 구분하는 경계에 높은 가중치를 둔 loss function을 사용했다.
+* 이러한 이유로 인해 나오게 된 U-Net의 특징을 다음과 같이 정리할 수 있다.
+ 1. U-Net은 upsampling과정에서 channel의 숫자가 더 많기 때문에 higher resolution layer에 context information을 전파할 수 있다.
+ 2. Fully connected layer(FCN layer)를 사용하지 않았기 때문에 patch에서 얻은 정보만 가지고 해당 patch에서 classification을 수행할 수 있고 이 과정을 이미지 전체에 대해 시행하기 때문에 seamless한 segmentation이 가능하다.(GPU 메모리의 한계성 때문에 이 방식 말고는 거대한 이미지를 처리할 수 없다.)
+ 3. U-Net은 Data augmentation에 elastic deformation을 적용해 학습용 데이터셋을 많이 늘렸다.
+ 4. U-Net은 붙어있는 세포 사이를 구분하는 경계에 높은 가중치를 둔 loss function을 사용했다.
 
 ## Network Architecture
 * 이 장에서는 U-Net의 구조를 설명해준다.
