@@ -6,3 +6,5 @@
 * Discriminator는 theta(d)로 편미분한 값만큼 maximize하는 방향으로 gradient ascending하고, 
 * Generator는 theta(g)로 편미분한 값만큼 minimize하는 방향으로 gradient descending한다. 
 * D가 0.5로 수렴할 때까지 학습!
+
+![](https://postfiles.pstatic.net/MjAyMjAzMDRfMjcz/MDAxNjQ2MzkyMjMwNzM2.36NUkJrwoA3KC1VkTj9O10Wq8TJKvqB861jTSbqNzpgg.xMOaTjE58IFhFiPX8MTZxsSElLduobCnFgKHHVvxpaog.JPEG.dldlsduq94/IMG_46FFA1F495BA-1.jpeg?type=w773)
