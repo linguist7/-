@@ -167,7 +167,7 @@
 ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fto7HJ%2Fbtrydzb3Omf%2FFIR5h49YAN3a95Wrluih31%2Fimg.png)
 
 ## Conditional WaveNets
-* WaveNet은 추가적인 입력값 h가 주어지면, 오디오의 조건부 분포 p(x|h)를 모델링할 수 있습니다. h를 이용하여 (1)의 식을 아래와 같이 수정할 수 있습니다.
+* WaveNet은 추가적인 입력값 h가 주어지면, 오디오의 조건부 분포 p(x|h)를 모델링할 수 있습니다. h를 이용하여 앞서 나온 식을 아래와 같이 수정할 수 있습니다.
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mi>p</mi>
   <mo stretchy="false">(</mo>
@@ -226,7 +226,7 @@
   </mrow>
 </math>
 
-* 본 논문에서는 WaveNet에 2가지 다른 방식으로 입력값을 집어넣었습니다. Global conditioning은 모든 시간 단계에 걸쳐 출력 분포에 영향을 미치는 단일 잠재 표현(latent representation) h에 따라 특성을 부여합니다. Global conditioning의 대표적인 예로 TTS 모델에서 발화자 임베딩(speaker embedding)이 있습니다. (2) 수식에 활성화 함수를 추가하면 다음과 같이 수식을 수정할 수 있습니다.
+* 본 논문에서는 WaveNet에 2가지 다른 방식으로 입력값을 집어넣었습니다. Global conditioning은 모든 시간 단계에 걸쳐 출력 분포에 영향을 미치는 단일 잠재 표현(latent representation) h에 따라 특성을 부여합니다. Global conditioning의 대표적인 예로 TTS 모델에서 발화자 임베딩(speaker embedding)이 있습니다. 앞서 나온 수식에 활성화 함수를 추가하면 다음과 같이 수식을 수정할 수 있습니다.
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow data-mjx-texclass="ORD">
