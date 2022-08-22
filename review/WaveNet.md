@@ -1,6 +1,14 @@
 # 논문리뷰 - WaveNet: A Generative Model for Raw Audio
 * WaveNet은 auto-regressive하게 음성 waveform을 생성하는 dilated causal convolution 기반의 딥러닝 모델입니다.
 
+## 기존 음성처리 방식의 문제점
+* 딥러닝 기반 음성합성방법이 등장하기 전까지는 아래와 같은 2가지 대표적인 방식을 주로 채택하여 음성을 생성하거나 합성하였습니다.
+
+1. Concatenative TTS 방식 : 다량의 음성데이터를 음소로 분리하고 조합하여 새로운 음성을 생성하는 방식
+2. Parametric TTS 방식 : 통계적 모델(은닉 마르코프 모델)을 기반으로 음성을 합성하는 방식
+
+* 하지만 위 방법으로부터 생성된 음성은 실제 사람의 음성만큼 매끄럽지 않으며 음편사이의 경계가 부자연스러운 문제들이 있습니다.
+
 ## sort summary
 * WaveNet은 자연스러운 음성 파형을 직접 생성합니다.
 * 긴 음성 파형을 학습하고 생성할 수 있는 새로운 구조를 제시합니다.
