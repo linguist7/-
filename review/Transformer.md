@@ -41,5 +41,29 @@
 
 
 
-## Self-Attention의 이점
+## Self-Attention 동작원리
+* 어텐션 함수는 주어진 '쿼리(Query)'에 대해서 모든 '키(Key)'와의 유사도를 각각 구한다. 그리고 구해낸 이 유사도를 가중치로 하여 키와 맵핑되어있는 각각의 '값(Value)'에 반영한다. 그리고 유사도가 반영된 '값(Value)'을 모두 합해 리턴한다.
+
+![](https://wikidocs.net/images/page/22893/%EC%BF%BC%EB%A6%AC.PNG)
+
+* 셀프 어텐션에서는 Q, K, V가 "입력 문장의 단어 벡터들"로 전부 동일한 값을 가진다. 의미적으로 생각해보면, 입력 문장 내의 단어 벡터들끼리 유사도를 구하므로서 단어간의 연관성을 찾아낸다고 볼 수 있다.
+
+#### Q, K, V 벡터 얻기
+* 셀프 어텐션은 인코더의 초기 입력인 dmodel의 차원을 가지는 단어 벡터들을 사용해 셀프 어텐션을 수행하는 것이 아니라 우선 각 단어 벡터들로부터 Q벡터, K벡터, V벡터를 얻는 작업을 거친다.  Q벡터, K벡터, V벡터는 기존의 벡터에 dmodel×(dmodel/num_heads) 크기의 각기 다른 3개 가중치 행렬(WQ, WK, WV)을 곱하므로서 구할 수 있다. 이 가중치 행렬은 훈련 과정에서 학습된다. 만약, 논문과 같이 dmodel=512이고 num_heads=8라면, 각 벡터에 3개의 서로 다른 가중치 행렬을 곱하고 64(dK = dmodel/num_heads)의 크기를 가지는 Q, K, V 벡터를 얻는다. 
+
+![](https://wikidocs.net/images/page/31379/transformer11.PNG)
+
+![](https://wikidocs.net/images/page/31379/transformer12.PNG)
+
+#### Scaled dot-product Attention
+트랜스포머에서는 어텐션 챕터에 사용했던 내적만을 사용하는 어텐션 함수 score(q,k)=q⋅k가 아니라 여기에 특정값으로 나눠준 어텐션 함수인 score(q,k)=q⋅k/n (아래 예시에서 n = 8)를 사용한다. 이러한 함수를 사용하는 어텐션을 닷-프로덕트 어텐션(dot-product attention)에서 값을 스케일링하는 것을 추가했다고 해 스케일드 닷-프로덕트 어텐션(Scaled dot-product Attention)이라고 한다.
+
+![](https://blogfiles.pstatic.net/MjAyMTExMjJfMTYz/MDAxNjM3NTcwOTA1MTkz.tByP4GK_3OqIMl1u-gmG_QMZgOv_mLh9O_QEZoSCbVwg.8xJ8Tphl7jql-L5tCZNBBIwxBfH8KikX0JWc72N61GUg.PNG.qhruddl51/image.png?type=w1)
+
+* 위와 같은 과정을 모든 단어에 대한 Q벡터에 대해 수행하는 것을 병렬적으로 표현하면 다음과 같다.
+
+![](https://postfiles.pstatic.net/MjAyMTEyMzBfMjIx/MDAxNjQwODMwODMxODgw.gw-Ih_0VHFyJUwJRBY8evfm62hBHqP6uzNnotAc4omog.pDs7yuLJAhQpSWR1Pq86wgvEAdlE8j2aSoWF-5BiNOog.PNG.qhruddl51/image.png?type=w773)
+
+* 결과적으로 나오는 어텐션 값 행렬 a의 크기는 (문장 내 단어의 개수, Q/K/V벡터의 길이) 이다. 
+
 
